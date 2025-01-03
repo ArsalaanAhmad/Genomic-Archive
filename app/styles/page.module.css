@@ -169,3 +169,7 @@ a.secondary {
     filter: invert();
   }
 }
+
+.body{
+  font-family: 'Inter', sans-serif;
+}

@@ -6,6 +6,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Inter", "sans-serif"],
+        sans: ["Poppins", "sans-serif"],
       },
       colors: {
         primary: "#1a202c", // Example custom color

@@ -1,10 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import Modal from "./Modal.js"; // Import the Modal Component
 import Image from "next/image";
-import DNA1 from "/public/DNAHelix.png";
+import DNAImage from "/public/DNAHelix.png"; // Replace with your DNA image file path
 
 const HeroSection = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal
+
+  const openModal = () => setIsModalOpen(true); // Function to open modal
+  const closeModal = () => setIsModalOpen(false); // Function to close modal
+
   return (
     <div>
       <section className="bg-white">
@@ -18,27 +24,29 @@ const HeroSection = () => {
                 Your Genomic Encyclopedia
               </p>
               <p className="mt-5 text-base font-normal leading-7 text-gray-600">
-                Explore, compare, and analyze genomic data with ease.{" "}
-                <span className="text-gray-800 font-medium">The Genomic Archive</span>{" "}
-                provides researchers and enthusiasts with a centralized platform 
-                to make genomic research more accessible, insightful, and collaborative.
+                Explore, compare, and analyze genomic data with ease. {" "}
+                <span className="text-gray-800 font-medium">
+                  The Genomic Archive
+                </span>{" "}
+                provides researchers and enthusiasts with a centralized platform
+                to make genomic research more accessible, insightful, and
+                collaborative.
               </p>
               <div className="relative inline-flex mt-8 group">
                 <div className="absolute inset-0 transition-all duration-1000 opacity-70 bg-gradient-to-r from-[#44BCFF] via-[#32C3FF] to-[#0ACFFF] rounded-xl blur-lg filter group-hover:opacity-100 group-hover:duration-200"></div>
-                <a
-                  href="#"
+                <button
+                  onClick={openModal} // Open the modal on button click
                   className="relative inline-flex items-center justify-center px-8 py-3 text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-                  role="button"
                 >
-                  Start Exploring
-                </a>
+                  Join Us Now
+                </button>
               </div>
             </div>
 
             <div className="self-end w-full lg:w-1/2">
               <Image
                 className="rounded-sm"
-                src={DNA1} // Correctly reference the imported image
+                src={DNAImage} // Add your DNA image here
                 alt="DNA Representation"
                 width={600}
                 height={400}
@@ -48,9 +56,11 @@ const HeroSection = () => {
           </div>
         </div>
       </section>
+
+      {/* Modal Component */}
+      {isModalOpen && <Modal closeModal={closeModal} />} {/* Pass closeModal */}
     </div>
   );
 };
 
 export default HeroSection;
-
