@@ -13,7 +13,7 @@ const HeroSection = () => {
 
   return (
     <div>
-      <section className="bg-white">
+      <section className="bg-white pt-20"> {/* Added top padding */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row justify-center mx-auto gap-6 lg:max-w-none">
             <div className="self-center w-full lg:w-[70%]">
