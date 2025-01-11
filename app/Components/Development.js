@@ -21,6 +21,7 @@ const styles = {
   phaseSubtitle: "pr-5 text-xl font-bold text-gray-900 bg-gray-50",
   iconContainer: "flex items-center",
   icon: "w-5 h-5 text-gray-900 shrink-0",
+  completedIcon: "w-5 h-5 text-purple-600 shrink-0", // Purple for completed tasks
   textBase: "ml-2 text-base font-medium text-gray-900",
 };
 
@@ -36,7 +37,12 @@ const roadmapPhases = [
       "Create Initial Wireframes",
       "Set Up Collaboration Tools",
     ],
-    completedTasks: [],
+    completedTasks: [
+      "Define Project Goals",
+      "Conduct Market Research",
+      "Explore Genomic APIs and Data Sources",
+      "Finalize Feature List",
+    ],
   },
   {
     title: "Phase 2",
@@ -49,7 +55,11 @@ const roadmapPhases = [
       "Build API Connections",
       "Develop Basic Search Features",
     ],
-    completedTasks: [],
+    completedTasks: [
+      "Set Up Next.js Environment",
+      "Integrate Tailwind CSS",
+      "Design Landing Page",
+    ],
   },
   {
     title: "Phase 3",
@@ -136,8 +146,8 @@ const Development = () => {
                   <ul className="space-y-3">
                     {phase.tasks.map((task, taskIndex) => (
                       <li key={taskIndex} className={styles.iconContainer}>
-                        {phase.completedTasks.includes(taskIndex) ? (
-                          <FaCircleCheck className={styles.icon} />
+                        {phase.completedTasks.includes(task) ? (
+                          <FaCircleCheck className={styles.completedIcon} />
                         ) : (
                           <FaRegCircle className={styles.icon} />
                         )}
