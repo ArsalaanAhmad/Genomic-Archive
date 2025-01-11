@@ -21,7 +21,7 @@ const HeroSection = () => {
                 The Genomic Archive
               </h1>
               <p className="mt-2 text-xl font-semibold text-gray-700">
-                Your Genomic Encyclopedia
+                Your Genomic Encyclopedia.
               </p>
               <p className="mt-5 text-base font-normal leading-7 text-gray-600">
                 Explore, compare, and analyze genomic data with ease. {" "}

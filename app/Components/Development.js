@@ -99,7 +99,7 @@ const Development = () => {
   };
 
   return (
-    <section className={styles.section}>
+    <section id="Roadmap" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.headingContainer}>
           <h2 className={styles.heading}>Full Roadmap</h2>

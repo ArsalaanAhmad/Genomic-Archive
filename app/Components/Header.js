@@ -4,15 +4,22 @@ import React, { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import Image from "next/image";
 import Logo from "/public/DnaLogo.png"; // Replace with your logo file path
-
-const commonStyles =
-  "text-xs font-bold tracking-widest text-gray-900 uppercase hover:text-indigo-600";
-const commonButtonStyles =
-  "inline-flex items-center justify-center px-6 py-2 text-base font-semibold text-white bg-gray-900 hover:bg-gray-700 rounded-lg focus:ring-2 focus:ring-offset-2 focus:ring-gray-900";
+import Modal from "./Modal" // Import the Modal Component"
 
 const Header = () => {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false); // Added state for menu toggle
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,11 +29,19 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isModalOpen]);
+
   return (
     <header
-      className={`sticky top-0 z-50 transition-opacity duration-300 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white bg-opacity-80 backdrop-blur-md shadow-md"
+          ? "bg-white bg-opacity-90 backdrop-blur-md shadow-md"
           : "bg-white"
       }`}
     >
@@ -35,28 +50,42 @@ const Header = () => {
           {/* Logo Section */}
           <div className="flex items-center">
             <Image src={Logo} alt="Genomic Archive Logo" width={40} height={40} />
-            <span className="text-2xl font-semibold ml-2">Genomic Archive</span>
+            <span className="text-2xl color-black font-semibold ml-2">Genomic Archive</span>
           </div>
 
-          {/* Links Section */}
+          {/* Desktop Links */}
           <div className="hidden md:flex md:space-x-10 md:items-center">
-            <a href="#" className={commonStyles}>
-              Services
-            </a>
-            <a href="#" className={commonStyles}>
-              About
-            </a>
-            <a href="#" className={commonStyles}>
-              Blog
-            </a>
-          </div>
+  <a
+    href="#Features"
+    className="text-xs font-bold tracking-widest text-gray-900 uppercase hover:text-indigo-600"
+  >
+    Features
+  </a>
+  <a
+    href="#Roadmap"
+    className="text-xs font-bold tracking-widest text-gray-900 uppercase hover:text-indigo-600"
+  >
+    Roadmap
+  </a>
+  <a
+    href="#FAQ"
+    className="text-xs font-bold tracking-widest text-gray-900 uppercase hover:text-indigo-600"
+  >
+    FAQ
+  </a>
+</div>
 
           {/* Call-to-Action */}
-          <div className="hidden md:flex">
-            <a href="#" className={commonButtonStyles}>
+            {/* Modal Trigger Button */}
+            <div className="hidden md:flex">
+            <button
+              onClick={openModal}
+              className="inline-flex items-center justify-center px-6 py-2 text-base font-semibold text-white bg-gray-900 hover:bg-gray-700 rounded-lg focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+            >
               Join Email List
-            </a>
-          </div>
+            </button>
+            </div>
+
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -71,35 +100,52 @@ const Header = () => {
         </nav>
 
         {/* Mobile Menu */}
-        {isExpanded && (
-          <nav className="md:hidden">
-            <ul className="flex flex-col space-y-4 mt-4">
-              <li>
-                <a href="#" className={commonStyles}>
-                  Services
-                </a>
-              </li>
-              <li>
-                <a href="#" className={commonStyles}>
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#" className={commonStyles}>
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className={commonButtonStyles}>
-                  Join Email List
-                </a>
-              </li>
-            </ul>
-          </nav>
-        )}
+        <div
+          className={`absolute top-full left-0 w-full bg-white shadow-md transform transition-transform duration-300 ${
+            isExpanded ? "translate-y-0" : "-translate-y-full"
+          } md:hidden`}
+        >
+          <ul className="flex flex-col space-y-4 p-4">
+            <li>
+              <a
+                href="#"
+                className="text-xs font-bold tracking-widest text-gray-900 uppercase hover:text-indigo-600"
+              >
+                Services
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="text-xs font-bold tracking-widest text-gray-900 uppercase hover:text-indigo-600"
+              >
+                About
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="text-xs font-bold tracking-widest text-gray-900 uppercase hover:text-indigo-600"
+              >
+                Blog
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="inline-flex items-center justify-center px-6 py-2 text-base font-semibold text-white bg-gray-900 hover:bg-gray-700 rounded-lg focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+              >
+                Join Email List
+              </a>
+            </li>
+          </ul>
+        </div>
+         {/* Modal Component */}
+      {isModalOpen && <Modal closeModal={closeModal} />} {/* Pass closeModal */}
       </div>
     </header>
   );
-};
+}
 
 export default Header;
+
