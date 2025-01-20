@@ -14,6 +14,7 @@
     "@fontsource/inter": "^5.1.0",
     "@mui/icons-material": "^6.3.0",
     "@mui/material": "^6.3.0",
+    "@vercel/analytics": "^1.4.1",
     "@zootools/waitlist-js": "^0.2.1",
     "framer-motion": "^11.15.0",
     "next": "15.1.2",
