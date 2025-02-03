@@ -4,6 +4,9 @@ import "@fontsource/inter/600.css";
 
 export const metadata = {
   title: "Genomic Archive",
+  icons: {
+    icon: '/DnaLogo.png'
+  },
   description: "A centralized platform for genomic data.",
 };
 
