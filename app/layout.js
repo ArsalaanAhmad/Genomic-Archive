@@ -6,6 +6,9 @@ import Header from "./Components/Header";
 
 export const metadata = {
   title: "Genomic Archive",
+  icons: {
+    icon: '/DnaLogo.png'
+  },
   description: "A centralized platform for genomic data.",
 };
 
