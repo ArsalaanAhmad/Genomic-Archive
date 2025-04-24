@@ -1,19 +1,20 @@
 "use client";
-
+import { useRouter } from 'next/navigation';
 import React, { useState } from "react";
 import Modal from "./Modal.js"; // Import the Modal Component
 import Image from "next/image";
 import DNAImage from "/public/DNAHelix.png"; // Replace with your DNA image file path
 
 const HeroSection = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal
+  const router = useRouter(); // <-- ADD THIS
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => setIsModalOpen(true); // Function to open modal
-  const closeModal = () => setIsModalOpen(false); // Function to close modal
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <div>
-      <section className="bg-white pt-20"> {/* Added top padding */}
+      <section className="bg-white pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row justify-center mx-auto gap-6 lg:max-w-none">
             <div className="self-center w-full lg:w-[70%]">
@@ -24,7 +25,7 @@ const HeroSection = () => {
                 Your Genomic Encyclopedia.
               </p>
               <p className="mt-5 text-base font-normal leading-7 text-gray-600">
-                Explore, compare, and analyze genomic data with ease. {" "}
+                Explore, compare, and analyze genomic data with ease.{" "}
                 <span className="text-gray-800 font-medium">
                   The Genomic Archive
                 </span>{" "}
@@ -35,7 +36,7 @@ const HeroSection = () => {
               <div className="relative inline-flex mt-8 group">
                 <div className="absolute inset-0 transition-all duration-1000 opacity-70 bg-gradient-to-r from-[#44BCFF] via-[#32C3FF] to-[#0ACFFF] rounded-xl blur-lg filter group-hover:opacity-100 group-hover:duration-200"></div>
                 <button
-                  onClick={openModal} // Open the modal on button click
+                  onClick={() => router.push('/search')} // <-- THIS LINE CHANGED
                   className="relative inline-flex items-center justify-center px-8 py-3 text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
                 >
                   Join Us Now
@@ -46,7 +47,7 @@ const HeroSection = () => {
             <div className="self-end w-full lg:w-1/2">
               <Image
                 className="rounded-sm"
-                src={DNAImage} // Add your DNA image here
+                src={DNAImage}
                 alt="DNA Representation"
                 width={600}
                 height={400}
@@ -57,8 +58,7 @@ const HeroSection = () => {
         </div>
       </section>
 
-      {/* Modal Component */}
-      {isModalOpen && <Modal closeModal={closeModal} />} {/* Pass closeModal */}
+      {isModalOpen && <Modal closeModal={closeModal} />}
     </div>
   );
 };

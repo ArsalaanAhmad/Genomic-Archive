@@ -1,6 +1,8 @@
+// app/layout.js
 import "./styles/globals.css";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/600.css";
+import Header from "./Components/Header";
 
 export const metadata = {
   title: "Genomic Archive",
@@ -11,13 +13,21 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* Importing Google Fonts */}
+        {/* Google Fonts */}
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
         />
       </head>
-      <body>{children}</body>
+      <body className="flex flex-col min-h-screen font-poppins">
+        {/* sticky header */}
+        <Header />
+
+        {/* the page content */}
+        <main className="flex-1">
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
