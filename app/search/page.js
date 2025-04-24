@@ -21,28 +21,28 @@ export default function SearchPage() {
       <Header />
 
       {/* 
-        flex-1 so that this main area takes
-        full remaining height beneath the fixed header 
+        flex to fill remaining screen, flex-col to stack,
+        justify-center/items-center to center.
       */}
       <main className="
         bg-white dark:bg-gray-900 
-        flex-1 flex flex-col justify-center items-center 
+        flex flex-col justify-center items-center h-screen
         px-4 py-8
-      ">
-        {/* Page‐level title */}
-        <h1 className="
-          text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100
-          mb-4
         ">
-          The Genomic Archive
-        </h1>
+        {/* Page‐level title */}
+      <h1 className="text-3xl font-bold text-black dark:text-white mb-2 underline">
+        The Genomic Archive
+      </h1>
+      <div className="text-gray-600 mt-2 mb-4">search &quot;text&quot;</div>
 
         {/* existing label & bar */}
-        <SearchBar 
+        <div className="bg-white border-2 border-black rounded-xl">
+             <SearchBar 
           onSearch={doSearch} 
-          label="Search the genome" 
+          label="" 
           placeholder="Type your query…" 
         />
+        </div>
 
         {/* dummy results below, you can style these however */}
         <ul className="w-full max-w-2xl mt-8 space-y-4">
